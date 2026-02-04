@@ -13,23 +13,26 @@ export const Hero: React.FC<HeroProps> = ({ onShopClick }) => {
                 <div className="space-y-6">
                     {/* Badge Removed */}
 
-                    <h1 className="text-4xl md:text-7xl font-bold leading-tight font-sans">
-                        Garde Agriculture <br />
-                        <span className="text-[hsl(var(--accent-orange))]">for your allforms</span>
+                    <h1 className="text-4xl md:text-6xl font-bold leading-tight font-sans">
+                        Empowering African Farmers with <span className="text-[hsl(var(--accent-orange))]">Disease-Free Planting Materials</span> & Smart Advisory
                     </h1>
 
-                    <p className="text-base md:text-xl text-gray-300 max-w-lg leading-relaxed">
-                        Premium genetically superior plant stock for commercial growers.
-                        Virus-indexed, hardened, and field-ready.
+                    <p className="text-base md:text-lg text-gray-300 max-w-lg leading-relaxed">
+                        Nasholi combines biotechnology, soil intelligence, and simple farmer advisory to help smallholder farmers increase yields, reduce losses, and build sustainable livelihoods.
                     </p>
 
-                    <button
-                        onClick={onShopClick}
-                        className="group px-6 py-3 md:px-8 md:py-4 bg-[hsl(var(--accent-orange))] text-white font-semibold rounded-full hover:bg-[hsl(var(--accent-orange))]/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center gap-2 text-sm md:text-base"
-                    >
-                        Explore Varieties
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <button
+                            onClick={onShopClick}
+                            className="group px-6 py-3 md:px-8 md:py-4 bg-[hsl(var(--accent-orange))] text-white font-semibold rounded-full hover:bg-[hsl(var(--accent-orange))]/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2 text-sm md:text-base"
+                        >
+                            Partner with Us
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                        <button className="px-6 py-3 md:px-8 md:py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-full hover:bg-white/20 transition-all text-sm md:text-base">
+                            Join the Farming Community
+                        </button>
+                    </div>
                 </div>
 
                 {/* Hero Image */}

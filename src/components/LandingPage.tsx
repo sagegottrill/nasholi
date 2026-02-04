@@ -1,34 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Hero } from './landing/Hero';
-import { Features } from './landing/Features';
-import { Services } from './landing/Services';
+import { Problem } from './landing/Problem';
+import { Solution } from './landing/Solution';
+import { HowItWorks } from './landing/HowItWorks';
+import { Services } from './landing/Services'; // This is now Product Categories
 import { Contact } from './landing/Contact';
-import { CartDropdown } from './landing/CartDropdown';
-import { ArrowUp, ShoppingCart, User, Menu, X, Leaf } from 'lucide-react';
+import { ArrowUp, Menu, X, User } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import AuthModal from '@/components/AuthModal';
 import UserDashboard from '@/components/UserDashboard';
-
-// Images
-const PRODUCT_IMAGES = {
-    banana: "https://d64gsuwffb70l.cloudfront.net/694ea68745fe3a9aa1890d75_1766762219829_8777ea65.png",
-    aloe: "https://d64gsuwffb70l.cloudfront.net/694ea68745fe3a9aa1890d75_1766762234013_c4d72bab.jpg",
-    strawberry: "https://d64gsuwffb70l.cloudfront.net/694ea68745fe3a9aa1890d75_1766762251297_bd9768ae.png"
-};
-
-interface CartItem {
-    id: number;
-    title: string;
-    price: number;
-    quantity: number;
-    image: string;
-}
 
 const LandingPage = () => {
     const {
         user,
         profile,
-        loading: authLoading,
         signUp,
         signIn,
         signOut,
@@ -38,64 +23,13 @@ const LandingPage = () => {
         getPaymentMethods,
         addPaymentMethod,
         deletePaymentMethod,
-        setDefaultPaymentMethod,
-        saveCart,
-        loadCart
+        setDefaultPaymentMethod
     } = useAuth();
-
-    // Products Data
-    const products = [
-        {
-            id: 1,
-            tag: "Ready for Dispatch",
-            tagColor: "bg-emerald-500",
-            title: "Cavendish Banana (G9)",
-            price: 1500,
-            image: PRODUCT_IMAGES.banana
-        },
-        {
-            id: 2,
-            tag: "Limited Stock",
-            tagColor: "bg-amber-500",
-            title: "Aloe Vera Offshoots",
-            price: 750,
-            image: PRODUCT_IMAGES.aloe
-        },
-        {
-            id: 3,
-            tag: "New Arrival",
-            tagColor: "bg-lime-500",
-            title: "Strawberry Runners",
-            price: 1200,
-            image: PRODUCT_IMAGES.strawberry
-        }
-    ];
 
     const [isScrolled, setIsScrolled] = useState(false);
     const [showAuthModal, setShowAuthModal] = useState(false);
     const [showDashboard, setShowDashboard] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [cartItems, setCartItems] = useState<CartItem[]>([]);
-    const [showCartDropdown, setShowCartDropdown] = useState(false);
-    const [addedToCart, setAddedToCart] = useState<number | null>(null);
-
-    // Load cart from database when user logs in
-    useEffect(() => {
-        if (user) {
-            loadCart().then((savedCart) => {
-                if (savedCart && savedCart.length > 0) {
-                    setCartItems(savedCart);
-                }
-            });
-        }
-    }, [user]);
-
-    // Save cart to database when it changes (for logged-in users)
-    useEffect(() => {
-        if (user && cartItems.length > 0) {
-            saveCart(cartItems);
-        }
-    }, [cartItems, user]);
 
     // Scroll Handler
     useEffect(() => {
@@ -110,61 +44,20 @@ const LandingPage = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    const scrollToShop = () => {
-        const element = document.getElementById('shop-section');
+    const scrollToSection = (id: string) => {
+        const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
-    }
-
-    // Cart Functions
-    const addToCart = (product: any) => {
-        setCartItems(prev => {
-            const existing = prev.find(item => item.id === product.id);
-            if (existing) {
-                return prev.map(item =>
-                    item.id === product.id
-                        ? { ...item, quantity: item.quantity + 1 }
-                        : item
-                );
-            }
-            return [...prev, {
-                id: product.id,
-                title: product.title,
-                price: product.price,
-                quantity: 1,
-                image: product.image
-            }];
-        });
-        setAddedToCart(product.id);
-        setShowCartDropdown(true);
-        setTimeout(() => setAddedToCart(null), 1500);
+        setMobileMenuOpen(false);
     };
-
-    const removeFromCart = (productId: number) => {
-        setCartItems(prev => prev.filter(item => item.id !== productId));
-    };
-
-    const updateQuantity = (productId: number, delta: number) => {
-        setCartItems(prev => prev.map(item => {
-            if (item.id === productId) {
-                const newQty = item.quantity + delta;
-                return newQty > 0 ? { ...item, quantity: newQty } : item;
-            }
-            return item;
-        }).filter(item => item.quantity > 0));
-    };
-
-    const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
         <div className="min-h-screen font-sans bg-[hsl(var(--cream-bg))] text-[hsl(var(--foreground))]">
 
             {/* Navigation */}
-            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
-                }`}>
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
                 <div className="container mx-auto px-6 flex justify-between items-center relative">
-                    {/* Logo */}
                     {/* Logo */}
                     <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                         <img
@@ -176,9 +69,9 @@ const LandingPage = () => {
 
                     {/* Desk Menu */}
                     <div className={`hidden md:flex items-center gap-8 ${isScrolled ? 'text-[hsl(var(--dark-green))]' : 'text-[hsl(var(--cream-bg))]'}`}>
-                        <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-[hsl(var(--accent-orange))] transition-colors font-medium">Home</button>
-                        <button onClick={scrollToShop} className="hover:text-[hsl(var(--accent-orange))] transition-colors font-medium">Varieties</button>
-                        <button className="hover:text-[hsl(var(--accent-orange))] transition-colors font-medium">Process</button>
+                        <button onClick={() => scrollToSection('problem')} className="hover:text-[hsl(var(--accent-orange))] transition-colors font-medium">The Problem</button>
+                        <button onClick={() => scrollToSection('solution')} className="hover:text-[hsl(var(--accent-orange))] transition-colors font-medium">Our Solution</button>
+                        <button onClick={() => scrollToSection('products')} className="hover:text-[hsl(var(--accent-orange))] transition-colors font-medium">Products</button>
                         {user && (
                             <button className="hover:text-[hsl(var(--accent-orange))] transition-colors font-medium">History</button>
                         )}
@@ -186,32 +79,6 @@ const LandingPage = () => {
 
                     {/* Actions */}
                     <div className="flex items-center gap-4">
-                        <div className="relative">
-                            <button
-                                onClick={() => setShowCartDropdown(!showCartDropdown)}
-                                className={`p-2 rounded-full transition-colors relative ${isScrolled ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white'}`}
-                            >
-                                <ShoppingCart size={20} />
-                                {cartCount > 0 && (
-                                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-[hsl(var(--accent-orange))] text-white text-xs font-bold rounded-full flex items-center justify-center animate-pulse">
-                                        {cartCount}
-                                    </span>
-                                )}
-                            </button>
-
-                            {/* Cart Dropdown */}
-                            {showCartDropdown && (
-                                <CartDropdown
-                                    cartItems={cartItems}
-                                    user={user}
-                                    onUpdateQuantity={updateQuantity}
-                                    onRemove={removeFromCart}
-                                    onCheckout={() => console.log('Checkout')}
-                                    onSignIn={() => { setShowCartDropdown(false); setShowAuthModal(true); }}
-                                />
-                            )}
-                        </div>
-
                         {user ? (
                             <button
                                 onClick={() => setShowDashboard(true)}
@@ -243,9 +110,9 @@ const LandingPage = () => {
                 {/* Mobile Menu */}
                 {mobileMenuOpen && (
                     <div className="absolute top-full left-0 w-full bg-white shadow-lg p-6 flex flex-col gap-4 md:hidden border-t">
-                        <button className="text-left py-2 border-b">Home</button>
-                        <button onClick={() => { scrollToShop(); setMobileMenuOpen(false); }} className="text-left py-2 border-b">Varieties</button>
-                        <button className="text-left py-2 border-b">Process</button>
+                        <button onClick={() => scrollToSection('problem')} className="text-left py-2 border-b">The Problem</button>
+                        <button onClick={() => scrollToSection('solution')} className="text-left py-2 border-b">Our Solution</button>
+                        <button onClick={() => scrollToSection('products')} className="text-left py-2 border-b">Products</button>
                         <button onClick={() => { setShowAuthModal(true); setMobileMenuOpen(false); }} className="text-left py-2 text-[hsl(var(--primary))] font-bold">Sign In</button>
                     </div>
                 )}
@@ -253,12 +120,27 @@ const LandingPage = () => {
 
             {/* Components Layering */}
             <main>
-                <Hero onShopClick={scrollToShop} />
-                <Features />
-                <div id="shop-section">
-                    <Services products={products} onAddToCart={addToCart} />
+                <Hero onShopClick={() => scrollToSection('products')} />
+
+                <div id="problem">
+                    <Problem />
                 </div>
-                <Contact />
+
+                <div id="solution">
+                    <Solution />
+                </div>
+
+                <div id="how-it-works">
+                    <HowItWorks />
+                </div>
+
+                <div id="products">
+                    <Services onOpenContact={() => scrollToSection('contact')} />
+                </div>
+
+                <div id="contact">
+                    <Contact />
+                </div>
             </main>
 
             {/* Footer mockup */}
