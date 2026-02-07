@@ -17,23 +17,80 @@ interface ServicesProps {
 
 export const Services: React.FC<ServicesProps> = ({ onOpenContact }) => {
     const products: Product[] = [
+        // Suckers
         {
             id: 1,
-            title: "Plantain Seedlings",
+            title: "Plantain Suckers",
             description: "High-yield, disease-free plantlets grown in sterile lab conditions.",
             features: ["Climate-resilient variety", "High survival rate", "Suitable for smallholder farms"],
-            priceRange: "₦80 – ₦150 per seedling",
-            image: "https://d64gsuwffb70l.cloudfront.net/694ea68745fe3a9aa1890d75_1766762219829_8777ea65.png",
-            category: "Seedlings"
+            priceRange: "₦200 per sucker",
+            image: "/products/plantain_sucker.png",
+            category: "Suckers"
         },
         {
             id: 2,
             title: "Banana Suckers",
             description: "Improved variety suckers fully acclimatized for field planting.",
             features: ["Improved yield potential", "Reduced disease risk", "Rapid establishment"],
-            priceRange: "₦150 – ₦300 per sucker",
-            image: "https://d64gsuwffb70l.cloudfront.net/694ea68745fe3a9aa1890d75_1766762234013_c4d72bab.jpg", // Using Aloe image as placeholder or previous image if suitable - kept aloe url but should probably match banana. Let's use the banana url from previous dict in LandingPage if possible, or keep this. Wait, product dict in LandingPage had banana. I will stick to what was there or generic. The text says Banana Suckers. I'll use the URL I have.
+            priceRange: "₦200 per sucker",
+            image: "/products/banana_sucker.png",
             category: "Suckers"
+        },
+        {
+            id: 3,
+            title: "Pineapple Suckers",
+            description: "Sweet, vigorous pineapple suckers ready for planting.",
+            features: ["High sugar content variety", "Fast growing", "Drought tolerant"],
+            priceRange: "Contact for Price",
+            image: "/products/pineapple_sucker.png",
+            category: "Suckers"
+        },
+
+        // Seedlings
+        {
+            id: 4,
+            title: "Orange Seedlings",
+            description: "Grafted hybrid orange seedlings for early fruiting.",
+            features: ["Sweet & juicy", "Early maturity", "Disease resistant"],
+            priceRange: "₦1,000 per seedling",
+            image: "/products/orange_seedling.png",
+            category: "Seedlings"
+        },
+        {
+            id: 5,
+            title: "Mango Seedlings",
+            description: "Premium grafted mango seedlings.",
+            features: ["Fibreless varieties", "High export value", "Vigorous growth"],
+            priceRange: "₦1,000 per seedling",
+            image: "/products/mango_seedling.png",
+            category: "Seedlings"
+        },
+        {
+            id: 6,
+            title: "Lime/Lemon Seedlings",
+            description: "High-quality citrus seedlings.",
+            features: ["Juicy & aromatic", "Year-round fruiting potential", "Hardy rootstock"],
+            priceRange: "₦1,000 per seedling",
+            image: "/products/lime_lemon_seedling.png",
+            category: "Seedlings"
+        },
+        {
+            id: 7,
+            title: "Watermelon Seedlings",
+            description: "Hybrid watermelon seedlings/seeds.",
+            features: ["High brix content", "Large fruit size", "Resistant to wilt"],
+            priceRange: "Contact for Price",
+            image: "/products/watermelon_seedling.png",
+            category: "Seedlings"
+        },
+        {
+            id: 8,
+            title: "Bell Pepper",
+            description: "Vibrant and crisp bell pepper seedlings.",
+            features: ["Greenhouse or open field", "Thick flesh", "High market demand"],
+            priceRange: "Contact for Price",
+            image: "/products/bell_pepper_seedling.png",
+            category: "Seedlings"
         }
     ];
 
@@ -94,27 +151,31 @@ export const Services: React.FC<ServicesProps> = ({ onOpenContact }) => {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div className="max-w-7xl mx-auto space-y-20">
                     {/* Seedlings Category */}
-                    <div className="space-y-8">
-                        <div className="flex items-center gap-3 mb-6 border-b border-gray-200 pb-4">
-                            <div className="w-10 h-10 rounded-full bg-[hsl(var(--dark-green))] text-white flex items-center justify-center shadow-lg">
-                                <Sprout size={20} />
+                    <div>
+                        <div className="flex items-center gap-3 mb-8 border-b border-gray-200 pb-4">
+                            <div className="w-12 h-12 rounded-full bg-[hsl(var(--dark-green))] text-white flex items-center justify-center shadow-lg">
+                                <Sprout size={24} />
                             </div>
-                            <h3 className="text-2xl font-bold text-[hsl(var(--dark-green))] font-serif">Seedlings</h3>
+                            <h3 className="text-3xl font-bold text-[hsl(var(--dark-green))] font-serif">Seedlings</h3>
                         </div>
-                        {products.filter(p => p.category === 'Seedlings').map(renderProductCard)}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {products.filter(p => p.category === 'Seedlings').map(renderProductCard)}
+                        </div>
                     </div>
 
                     {/* Suckers Category */}
-                    <div className="space-y-8">
-                        <div className="flex items-center gap-3 mb-6 border-b border-gray-200 pb-4">
-                            <div className="w-10 h-10 rounded-full bg-[hsl(var(--dark-green))] text-white flex items-center justify-center shadow-lg">
-                                <Leaf size={20} />
+                    <div>
+                        <div className="flex items-center gap-3 mb-8 border-b border-gray-200 pb-4">
+                            <div className="w-12 h-12 rounded-full bg-[hsl(var(--dark-green))] text-white flex items-center justify-center shadow-lg">
+                                <Leaf size={24} />
                             </div>
-                            <h3 className="text-2xl font-bold text-[hsl(var(--dark-green))] font-serif">Suckers</h3>
+                            <h3 className="text-3xl font-bold text-[hsl(var(--dark-green))] font-serif">Suckers</h3>
                         </div>
-                        {products.filter(p => p.category === 'Suckers').map(renderProductCard)}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {products.filter(p => p.category === 'Suckers').map(renderProductCard)}
+                        </div>
                     </div>
                 </div>
             </div>

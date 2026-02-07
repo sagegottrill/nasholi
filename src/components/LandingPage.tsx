@@ -56,19 +56,19 @@ const LandingPage = () => {
         <div className="min-h-screen font-sans bg-[hsl(var(--cream-bg))] text-[hsl(var(--foreground))]">
 
             {/* Navigation */}
-            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[hsl(var(--cream-bg))]/95 backdrop-blur-md shadow-sm py-4' : 'bg-[hsl(var(--cream-bg))] py-6'}`}>
                 <div className="container mx-auto px-6 flex justify-between items-center relative">
                     {/* Logo */}
                     <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                         <img
-                            src="/white%20logo.png"
+                            src="/Nash.png"
                             alt="Nasholi Logo"
-                            className="h-20 w-auto object-contain"
+                            className="h-12 w-auto object-contain"
                         />
                     </div>
 
                     {/* Desk Menu */}
-                    <div className={`hidden md:flex items-center gap-8 ${isScrolled ? 'text-[hsl(var(--dark-green))]' : 'text-[hsl(var(--cream-bg))]'}`}>
+                    <div className={`hidden md:flex items-center gap-8 text-[hsl(var(--dark-green))]`}>
                         <button onClick={() => scrollToSection('problem')} className="hover:text-[hsl(var(--accent-orange))] transition-colors font-medium">The Problem</button>
                         <button onClick={() => scrollToSection('solution')} className="hover:text-[hsl(var(--accent-orange))] transition-colors font-medium">Our Solution</button>
                         <button onClick={() => scrollToSection('products')} className="hover:text-[hsl(var(--accent-orange))] transition-colors font-medium">Products</button>
@@ -89,10 +89,7 @@ const LandingPage = () => {
                         ) : (
                             <button
                                 onClick={() => setShowAuthModal(true)}
-                                className={`px-5 py-2 rounded-full font-semibold transition-all ${isScrolled
-                                    ? 'bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary))]/90'
-                                    : 'bg-[hsl(var(--cream-bg))] text-[hsl(var(--dark-green))] hover:bg-white'
-                                    }`}
+                                className={`px-5 py-2 rounded-full font-semibold transition-all bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary))]/90`}
                             >
                                 Get Started
                             </button>

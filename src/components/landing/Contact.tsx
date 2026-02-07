@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 
 export const Contact = () => {
     return (
-        <section className="py-12 md:py-20 bg-[hsl(var(--cream-bg))]">
+        <section className="py-12 md:py-20 bg-white">
             <div className="container mx-auto px-6">
                 <h2 className="text-center text-3xl font-bold text-[hsl(var(--dark-green))] mb-12">Responsive Contact</h2>
 
