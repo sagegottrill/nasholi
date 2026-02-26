@@ -95,43 +95,43 @@ export const Services: React.FC<ServicesProps> = ({ onOpenContact }) => {
     ];
 
     const renderProductCard = (product: Product) => (
-        <div key={product.id} className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 flex flex-col">
-            <div className="h-48 overflow-hidden relative">
+        <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 flex flex-col">
+            <div className="h-44 overflow-hidden relative">
                 <img
                     src={product.image}
                     alt={product.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
             </div>
-            <div className="p-6 flex flex-col flex-grow">
-                <div className="mb-4">
-                    <span className="inline-block px-3 py-1 bg-[hsl(var(--cream-bg))] text-[hsl(var(--dark-green))] text-xs font-bold rounded-full mb-2">
+            <div className="p-5 flex flex-col flex-grow">
+                <div className="mb-3">
+                    <span className="inline-block px-2.5 py-0.5 bg-[hsl(var(--cream-bg))] text-[hsl(var(--dark-green))] text-xs font-bold rounded-full mb-2">
                         {product.category}
                     </span>
-                    <h3 className="text-xl font-bold text-[hsl(var(--dark-green))] mb-2">{product.title}</h3>
-                    <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+                    <h3 className="text-base font-bold text-[hsl(var(--dark-green))] mb-1.5">{product.title}</h3>
+                    <p className="text-gray-600 text-xs mb-3">{product.description}</p>
 
-                    <ul className="space-y-2 mb-6">
+                    <ul className="space-y-1.5 mb-4">
                         {product.features.map((feat, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
-                                <Check size={16} className="text-[hsl(var(--accent-orange))] mt-0.5 flex-shrink-0" />
+                            <li key={i} className="flex items-start gap-1.5 text-xs text-gray-500">
+                                <Check size={14} className="text-[hsl(var(--accent-orange))] mt-0.5 flex-shrink-0" />
                                 <span>{feat}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className="mt-auto pt-4 border-t border-gray-100">
-                    <div className="flex items-center justify-between mb-4">
-                        <span className="text-sm text-gray-400">Price Range</span>
-                        <span className="font-bold text-[hsl(var(--primary))]">{product.priceRange}</span>
+                <div className="mt-auto pt-3 border-t border-gray-100">
+                    <div className="flex items-center justify-between mb-3">
+                        <span className="text-xs text-gray-400">Price</span>
+                        <span className="font-bold text-sm text-[hsl(var(--primary))]">{product.priceRange}</span>
                     </div>
                     <button
                         onClick={onOpenContact}
-                        className="w-full py-3 bg-[hsl(var(--dark-green))] text-[hsl(var(--cream-bg))] font-semibold rounded-xl hover:bg-[hsl(var(--primary))] transition-colors flex items-center justify-center gap-2"
+                        className="w-full py-2.5 bg-[hsl(var(--dark-green))] text-[hsl(var(--cream-bg))] font-semibold text-sm rounded-xl hover:bg-[hsl(var(--primary))] transition-colors flex items-center justify-center gap-2"
                     >
                         Request Supply
-                        <ArrowRight size={18} />
+                        <ArrowRight size={16} />
                     </button>
                 </div>
             </div>
@@ -139,41 +139,41 @@ export const Services: React.FC<ServicesProps> = ({ onOpenContact }) => {
     );
 
     return (
-        <section className="py-16 md:py-24 bg-[hsl(var(--cream-bg))]">
+        <section className="py-14 md:py-20 bg-[hsl(var(--cream-bg))]">
             <div className="container mx-auto px-6">
-                <div className="text-center mb-16">
-                    <span className="text-[hsl(var(--accent-orange))] font-bold uppercase tracking-wider text-sm">Product Categories</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[hsl(var(--dark-green))] mt-3 mb-4 font-serif">
+                <div className="text-center mb-12">
+                    <span className="text-[hsl(var(--accent-orange))] font-bold uppercase tracking-wider text-xs">Product Categories</span>
+                    <h2 className="text-2xl md:text-3xl font-bold text-[hsl(var(--dark-green))] mt-2 mb-3 font-serif">
                         Clean Planting Materials
                     </h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-gray-600 text-sm max-w-2xl mx-auto">
                         We supply verified disease-free seedlings and suckers directly to farmers.
                     </p>
                 </div>
 
-                <div className="max-w-7xl mx-auto space-y-20">
+                <div className="max-w-7xl mx-auto space-y-16">
                     {/* Seedlings Category */}
                     <div>
-                        <div className="flex items-center gap-3 mb-8 border-b border-gray-200 pb-4">
-                            <div className="w-12 h-12 rounded-full bg-[hsl(var(--dark-green))] text-white flex items-center justify-center shadow-lg">
-                                <Sprout size={24} />
+                        <div className="flex items-center gap-3 mb-6 border-b border-gray-200 pb-3">
+                            <div className="w-10 h-10 rounded-full bg-[hsl(var(--dark-green))] text-white flex items-center justify-center shadow-md">
+                                <Sprout size={20} />
                             </div>
-                            <h3 className="text-3xl font-bold text-[hsl(var(--dark-green))] font-serif">Seedlings</h3>
+                            <h3 className="text-2xl font-bold text-[hsl(var(--dark-green))] font-serif">Seedlings</h3>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                             {products.filter(p => p.category === 'Seedlings').map(renderProductCard)}
                         </div>
                     </div>
 
                     {/* Suckers Category */}
                     <div>
-                        <div className="flex items-center gap-3 mb-8 border-b border-gray-200 pb-4">
-                            <div className="w-12 h-12 rounded-full bg-[hsl(var(--dark-green))] text-white flex items-center justify-center shadow-lg">
-                                <Leaf size={24} />
+                        <div className="flex items-center gap-3 mb-6 border-b border-gray-200 pb-3">
+                            <div className="w-10 h-10 rounded-full bg-[hsl(var(--dark-green))] text-white flex items-center justify-center shadow-md">
+                                <Leaf size={20} />
                             </div>
-                            <h3 className="text-3xl font-bold text-[hsl(var(--dark-green))] font-serif">Suckers</h3>
+                            <h3 className="text-2xl font-bold text-[hsl(var(--dark-green))] font-serif">Suckers</h3>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                             {products.filter(p => p.category === 'Suckers').map(renderProductCard)}
                         </div>
                     </div>
